@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block "title" %}
+
+{% endblock "title" %}
+
+{% block "main" %}
+<div class="container mt-2">
+        <div class="container bg-primary p-2 text-white text-center shadow w-70">Add New Products</div>
+    </div>
+    <div class="container mt-3 shadow w-50">
+    <form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {{form.as_p}}
+
+    {% comment %} {% for field in form %}
+        {% for error in field.errors %}
+            <div style="color:red;">{{ error }}</div>
+        {% endfor %}
+    {% endfor %} {% endcomment %}
+    
+    <input type="submit" value="Submit">
+    </form>
+
+{% endblock "main" %}
+
+
+

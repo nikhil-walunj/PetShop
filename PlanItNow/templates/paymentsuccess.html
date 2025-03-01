@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block "title" %}
+{% endblock "title" %}
+
+{% block "main" %}
+<div class="container-fluid">
+<div class="col-md-9 mt-3">
+            <h2>Payment Done Successfully !! Thankyou !!</h3>
+            <div class="row">
+                {% for prod in orders %}
+                <div class="col-md-3 d-flex justify-content-center mb-3 mt-2"> 
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{ prod.pet.prodImage.url }}" height="250px" width="250px" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ prod.pet.prodName | upper }}</h5>
+                            <p class="card-text">{{ prod.pet.proDesc }}</p>
+                            <h5 class="card-title">Qty: {{ prod.quantity }}</h5>
+                            <h5 class="card-title">Total Price: {{ prod.totalPrice }}</h5>
+                        </div>
+                        <div class="card-footer d-flex justify-content-center">
+                            <a href="#" class="btn btn-primary">{{ prod.productstatus}}</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+</div>
+</div>
+{% endblock "main" %}
+
+
+
+
+
+

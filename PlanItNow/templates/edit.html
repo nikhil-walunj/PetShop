@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Operation</title>
+    <style>
+        table {
+            border: solid 2px black;
+            padding-bottom: 20px;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 10px;
+            margin-left: 500px;
+            margin-top: 250px;
+            background-color: bisque;
+        }
+        body {
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Edit Operation</th>
+        </tr>
+    <form action="" method="POST">
+        {% csrf_token %}  <!-- cross side request  -->
+    <tr>
+        <td>
+            <label for="">Enter Customer Id:</label>
+        </td>
+        <td>
+            <input type="number" name="custid" value={{customerDetails.customerId}} required>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="">Enter Customer Name:</label>
+        </td>
+        <td>
+            <input type="text" name="custname" value={{customerDetails.customerName}} required>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="">Enter Customer Email:</label>
+        </td>
+        <td>
+            <input type="email" name="custemail" value={{customerDetails.customerEmail}} required>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="">Enter Customer Contact:</label>
+        </td>
+        <td>
+            <input type="number" name="custcontact" value={{customerDetails.customerContact}} required>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="Submit">
+        </td>
+    </tr>
+    </form>
+    </table>
+</body>
+</html>

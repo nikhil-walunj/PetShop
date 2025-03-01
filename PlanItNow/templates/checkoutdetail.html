@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block "title" %}
+{% endblock "title" %}
+
+{% block "main" %}
+<div class="container">
+    <div class="row">
+        <!-- Left Side: Product Image and Details -->
+        <div class="col-md-8 mt-3">
+            <h3>You Purchased {{ totalCount }} Products:</h3>
+            {% for prod in products %}
+            <div class="row">
+                <!-- Product Image -->
+                <div class="col-md-3 mt-2">
+                    <div class="card mb-3" style="width: 100%;">
+                        <img src="{{ prod.pid.prodImage.url }}" class="card-img-top img-fluid" style="height: 10rem;" alt="Product Image">
+                    </div>
+                </div>
+                <!-- Product Details -->
+                <div class="col-md-5 d-flex align-items-center">
+                    <div class="card-body">
+                        <h5 class="card-title mb-2">{{ prod.pid.prodName | upper }}</h5>
+                        <h5 class="card-title mb-2">Rs.{{ prod.pid.proPrice }}/-</h5>
+                        <h5 class="card-title mb-2">Qty: {{ prod.qty }}</h5>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Right Side: Customer Details -->
+        <div class="col-md-4 mt-3">
+            {% for cust in custformdetail %}
+            <div class="card p-3">
+                <h6>Name: {{ cust.custfullName }}</h6>
+                <h6>Email: {{ cust.custemailId }}</h6>
+                <h6>PhoneNo: {{ cust.custphoneNo }}</h6>
+                <h6>Address: {{ cust.custAddress }}</h6>
+                <h6>City: {{ cust.custcity }}</h6>
+                <h6>Pincode: {{ cust.pinCode }}</h6>
+                <h6>Country: {{ cust.countryName }}</h6>
+                <h6>Additional Note: {{ cust.additionalNotes }}</h6>
+                <div class="card p-3 mt-3">
+                    <h4>Total Amount: {{ totalamount }}</h4>
+                    <a href="#" class="btn btn-primary mt-2">Go For Payment</a>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="row mt-3">
+                {{ paypalpayment.render }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock "main" %}
+
+
+
+
+

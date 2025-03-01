@@ -1,0 +1,24 @@
+/* Style for the rating star container */
+.rating-star {
+    font-size: 20px; /* Adjust the size of the stars */
+    color: #FFD700;  /* Gold color for the stars */
+}
+
+/* Style for empty stars */
+.rating-star .fa-star-o {
+    color: #ccc; /* Light gray color for empty stars */
+}
+
+/* Style for half-filled stars */
+.rating-star .fa-star-half-o {
+    color: #FFD700; /* Orange color for half-filled stars */
+}
+
+/* Style for filled stars */
+.rating-star .fa-star {
+    color: #FFD700; /* Gold color for filled stars */
+}
+
+
+
+

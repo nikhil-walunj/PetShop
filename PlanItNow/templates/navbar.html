@@ -1,0 +1,64 @@
+<nav class="navbar navbar-expand-lg bg-warning" >
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Petshopy</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Category</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Products
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-disabled="true">Contact us</a>
+        </li>
+        {% if user.is_authenticated and user.is_superuser %}
+        <li class="nav-item">
+          <a class="nav-link" aria-disabled="true" href="{% url 'addproduct' %}">Add Product</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-disabled="true" href='#'>Update Product</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-disabled="true" href="{% url 'signout' %}">Logout</a>
+        </li>
+        {% elif user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" aria-disabled="true" href="{% url 'signout' %}">Logout</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-disabled="true" href="{% url 'orders' %}">Orders</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" aria-disabled="true" href="{% url 'register' %}">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-disabled="true" href="{% url 'loginuser' %}">Login</a>
+        </li>
+        {% endif %}
+      </ul>
+      <h6 style="margin-right:40px; margin-top: 15px;">Welcome {{ request.user.username }} !<h6>
+      <form class="d-flex" role="search" method="POST" action="{% url 'searchanything' %}">
+        {% csrf_token %}
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+

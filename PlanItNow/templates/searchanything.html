@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block "title" %}
+
+{% endblock "title" %}
+
+{% block "main" %}
+<div class="container">
+    <div class="row">
+    {% if result %}
+    {% for prod in result %}           
+        <div class="col-md-4 d-flex justify-content-center mb-3 mt-2">
+            <div class="card" style="width: 18rem;">
+                <img src="{{ prod.prodImage.url }}" height="250px" width="250px" class="card-img-top" alt="...">
+            </div>
+        </div>
+        <div class="col-md-8 mt-2">
+            <div class="card-body">
+                <h5 class="card-title">{{ prod.prodName  }}</h5>
+                <p class="card-text">{{ prod.proDesc }}</p>
+                <h5 class="card-title">Rs.{{ prod.proPrice }}/-</h5>
+                {% comment %} <h5 class="card-title">{{ prod.prodRating }}</h5> {% endcomment %}
+                <div class="rating-star">
+                    <span>
+                        <i class="fa fa-star{% if prod.prodRating < 0.5 %}-o{% elif prod.prodRating >= 0.5 and prod.prodRating < 1 %}-half-o {% endif %}" aria-hidden="true"></i>
+                        <i class="fa fa-star{% if prod.prodRating < 1.5 %}-o{% elif prod.prodRating >= 1.5 and prod.prodRating < 2 %}-half-o {% endif %}" aria-hidden="true"></i>
+                        <i class="fa fa-star{% if prod.prodRating < 2.5 %}-o{% elif prod.prodRating >= 2.5 and prod.prodRating < 3 %}-half-o {% endif %}" aria-hidden="true"></i>
+                        <i class="fa fa-star{% if prod.prodRating < 3.5 %}-o{% elif prod.prodRating >= 3.5 and prod.prodRating < 4 %}-half-o {% endif %}" aria-hidden="true"></i>
+                        <i class="fa fa-star{% if prod.prodRating < 4.5 %}-o{% elif prod.prodRating >= 4.5 and prod.prodRating < 5 %}-half-o {% endif %}" aria-hidden="true"></i>
+                        <span class="ms-2" style="color:black">({{ prod.prodRating }})</span>
+                    </span>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'addtocart' prod.id %}" class="btn btn-primary">Add To Cart</a>
+                
+                    <a href="{% url 'viewcart' %}" class="btn btn-primary">View Cart</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+    {% else %}
+    <p>No Products Found !!</p>
+    {% endif %}
+</div>
+{% endblock "main" %}

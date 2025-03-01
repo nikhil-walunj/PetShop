@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block "title" %}
+
+{% endblock "title" %}
+
+{% block "main" %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="row mt-4 mb-3">
+            <div class="col-md-6  mb-3">
+            <h4>Total Items in Cart: {{ totalCount }}</h4>
+            </div>
+            <div class="col-md-3 mb-3">
+            <h4>Total Amount: {{ totalamount }}</h4>
+            </div>
+            <div class="col-md-3 mb-3">
+            <a href="{% url 'checkout' %}" class="btn btn-primary">Proceed to checkout</a>
+            </div>
+        </div>
+        {% for prod in products %}
+        <div class="col-md-3 mb-3 mt-2">
+            <div class="card" style="width: 18rem;">
+                <img src="{{ prod.pid.prodImage.url }}" class="card-img-top img-fluid" alt="Product Image">
+            </div>
+        </div>
+        
+        <div class="col-md-3 mt-2">
+            <div class="card-body">
+                <h5 class="card-title">{{ prod.pid.prodName | upper }}</h5>
+                <p class="card-text">{{ prod.pid.proDesc }}</p>
+                <h5 class="card-title">Rs.{{ prod.pid.proPrice }}/-</h5>
+                {% comment %} <h5 class="card-title">{{ prod.prodRating }}</h5> {% endcomment %}
+                <div class="rating-star">
+                    <span>
+                        <i class="fa fa-star{% if prod.prodRating < 0.5 %}-o{% elif prod.prodRating >= 0.5 and prod.prodRating < 1 %}-half-o {% endif %}" aria-hidden="true"></i>
+                        <i class="fa fa-star{% if prod.prodRating < 1.5 %}-o{% elif prod.prodRating >= 1.5 and prod.prodRating < 2 %}-half-o {% endif %}" aria-hidden="true"></i>
+                        <i class="fa fa-star{% if prod.prodRating < 2.5 %}-o{% elif prod.prodRating >= 2.5 and prod.prodRating < 3 %}-half-o {% endif %}" aria-hidden="true"></i>
+                        <i class="fa fa-star{% if prod.prodRating < 3.5 %}-o{% elif prod.prodRating >= 3.5 and prod.prodRating < 4 %}-half-o {% endif %}" aria-hidden="true"></i>
+                        <i class="fa fa-star{% if prod.prodRating < 4.5 %}-o{% elif prod.prodRating >= 4.5 and prod.prodRating < 5 %}-half-o {% endif %}" aria-hidden="true"></i>
+                        <span class="ms-2" style="color:black;">({{ prod.pid.prodRating }})</span><br>
+                        <a href="/updateqty/1/{{prod.id}}" class="btn btn-warning">+</a>
+                        <input type="number" value="{{ prod.qty }}" readonly>
+                        <a href="/updateqty/0/{{prod.id}}" class="btn btn-warning">-</a>
+                    </span>
+                </div>
+                <a href="#" class="btn btn-primary mt-3">Buy Now</a>  
+                <a href="/remove/{{prod.id}}" class="btn btn-primary mt-3">Remove Product</a> 
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="col-md-3 mt-4 mb-3">
+        <h4>Total Amount: {{ totalamount }}</h4>
+        <a href="{% url 'checkout' %}" class="btn btn-primary mt-3">Proceed to checkout</a>
+    </div>
+</div>
+{% endblock "main" %}
+
+
+
+
